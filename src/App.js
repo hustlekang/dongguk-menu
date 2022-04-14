@@ -4,10 +4,46 @@ import './App.css';
 function App() {
   const date = new Date();
   const date2= new Date(date.toISOString().split('T')[0]);
-  console.log(date2);
   const [sday,setSday]= useState(date2.getTime()/1000 - 9*60*60);
   const [url,setUrl] = useState(`https://dgucoop.dongguk.edu/mobile/menu.html?code=5&sday=${sday}`);
 
+  const day = date.toString().split(' ')[0];
+  let differ = 0;
+  let maxDate = '';
+  switch (date.getDay()) {
+    case 0:
+      differ = 13;
+      break;
+    case 1:
+      differ = 12;
+      break;
+    case 2:
+      differ = 11;
+      break;
+    case 3:
+      differ = 10;
+      break;
+    case 4:
+      differ = 9;
+      break;
+    case 5:
+      differ = 8;
+      break;
+    case 6:
+      differ = 7;
+      break;
+    default:
+      break;
+  }
+  const maxDay = Number(date.toISOString().split('T')[0].split('-')[2])+differ;
+  if(maxDay>31){
+    maxDay -= 31;
+    maxDate = `${date.toISOString().split('T')[0].split('-')[0]}-${date.toISOString().split('T')[0].split('-')[1]+1}-${maxDay}`;
+  }
+  else{
+    maxDate=`${date.toISOString().split('T')[0].split('-')[0]}-${date.toISOString().split('T')[0].split('-')[1]}-${maxDay}`;
+  }
+  
   const handleDateChange = (event)=>{
     const newDate = new Date(event.target.value);
     setSday(newDate.getTime()/1000 - 9*60*60);
@@ -34,9 +70,11 @@ function App() {
           }}
         />
       </div>
-
-      <input 
+      <label htmlFor='datepicker'>날짜를 선택하세요</label>
+      <input
+        id='datepicker' 
         type='date'
+        max={maxDate}
         defaultValue={date.toISOString().split('T')[0]} 
         onChange={handleDateChange}
         style={{
@@ -49,7 +87,8 @@ function App() {
           'textAlign':'center',
           'padding':'5px',
           'color':'#333333',
-          'verticalAlign':'middle'
+          'verticalAlign':'bottom',
+          'marginTop':'10px'
         }}
         />
         
