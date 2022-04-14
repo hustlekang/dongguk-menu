@@ -7,7 +7,6 @@ function App() {
   const [sday,setSday]= useState(date2.getTime()/1000 - 9*60*60);
   const [url,setUrl] = useState(`https://dgucoop.dongguk.edu/mobile/menu.html?code=5&sday=${sday}`);
 
-  const day = date.toString().split(' ')[0];
   let differ = 0;
   let maxDate = '';
   switch (date.getDay()) {
@@ -35,7 +34,7 @@ function App() {
     default:
       break;
   }
-  const maxDay = Number(date.toISOString().split('T')[0].split('-')[2])+differ;
+  let maxDay = Number(date.toISOString().split('T')[0].split('-')[2])+differ;
   if(maxDay>31){
     maxDay -= 31;
     maxDate = `${date.toISOString().split('T')[0].split('-')[0]}-${date.toISOString().split('T')[0].split('-')[1]+1}-${maxDay}`;
