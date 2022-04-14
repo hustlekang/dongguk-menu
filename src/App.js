@@ -19,7 +19,7 @@ function App() {
   
   return (
     <div className="App">
-      <div style={{'height':'450px'}}>
+      <div style={{'height':'500px'}}>
         <iframe
           title='menu'
           src={url}
@@ -29,7 +29,7 @@ function App() {
             'top':-45,
             'left': '50%',
             'width':'390px',
-            'height': '450px',
+            'height': '500px',
             'transform': 'translate(-50%)'
           }}
         />
@@ -45,7 +45,11 @@ function App() {
           'width':'100%',
           'height':'40px',
           'fontSize' : '15px',
-          'fontWeight' : 500
+          'fontWeight' : 500,
+          'textAlign':'center',
+          'padding':'5px',
+          'border':'1px solid',
+          'color':'#333333'
         }}
         />
         
