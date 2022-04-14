@@ -44,12 +44,12 @@ function App() {
           'boxSizing':'border-box',
           'width':'390px',
           'height':'40px',
-          'fontSize' : '15px',
-          'fontWeight' : 500,
+          'fontSize' : '20px',
+          'fontWeight' : 600,
           'textAlign':'center',
           'padding':'5px',
-          'border':'1px solid',
-          'color':'#333333'
+          'color':'#333333',
+          'verticalAlign':'middle'
         }}
         />
         
