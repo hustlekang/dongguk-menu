@@ -42,7 +42,7 @@ function App() {
         style={{
           'display':'block',
           'boxSizing':'border-box',
-          'width':'100%',
+          'width':'390px',
           'height':'40px',
           'fontSize' : '15px',
           'fontWeight' : 500,
