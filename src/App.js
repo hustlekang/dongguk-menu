@@ -21,6 +21,7 @@ function App() {
     <div className="App">
       <div style={{'height':'450px'}}>
         <iframe
+          title='menu'
           src={url}
           scrolling='no'
           style={{
