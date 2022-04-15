@@ -3,8 +3,8 @@ import './App.css';
 
 function App() {
   const date = new Date();
-  const date2= new Date(date.toISOString().split('T')[0]);
-  const [sday,setSday]= useState(date2.getTime()/1000 - 9*60*60);
+  const date2= new Date(date.toLocaleDateString().slice(0,-1).replaceAll('. ','-'));
+  const [sday,setSday]= useState(date2.getTime()/1000);
   const [url,setUrl] = useState(`https://dgucoop.dongguk.edu/mobile/menu.html?code=5&sday=${sday}`);
 
   let differ = 0;
