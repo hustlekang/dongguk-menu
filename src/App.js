@@ -3,8 +3,13 @@ import './App.css';
 
 function App() {
   const date = new Date();
-  const date2= new Date(date.toLocaleDateString().slice(0,-1).replaceAll('. ','-'));
-  const [sday,setSday]= useState(date2.getTime()/1000);
+  let yymmdd = date.toLocaleDateString().slice(0,-1).replaceAll('. ','-');
+  if (yymmdd.split('-')[1].length===1){
+    yymmdd = yymmdd.slice(0,5)+'0'+yymmdd.slice(5,);
+  }
+
+  let date2 = new Date(yymmdd);
+  const [sday,setSday]= useState(date2.getTime()/1000-32400);
   const [url,setUrl] = useState(`https://dgucoop.dongguk.edu/mobile/menu.html?code=5&sday=${sday}`);
 
   let differ = 0;
@@ -69,7 +74,7 @@ function App() {
           }}
         />
       </div>
-      <label htmlFor='datepicker'>날짜를 선택하세요</label>
+      <label htmlFor='datepicker'>날짜를 선택하세요</label> 
       <input
         id='datepicker' 
         type='date'
@@ -87,10 +92,11 @@ function App() {
           'padding':'5px',
           'color':'#333333',
           'verticalAlign':'bottom',
-          'marginTop':'10px'
+          'margin':'10px 0',
+          
         }}
         />
-        
+      <label htmlFor='datepicker' style={{'color':'#cccccc'}}>2010년 ~ 차주까지 가능</label>
     </div>
   );
 }
