@@ -3,13 +3,11 @@ import './App.css';
 
 function App() {
   const date = new Date();
-  let yymmdd = date.toLocaleDateString().slice(0,-1).replaceAll('. ','-');
-  if (yymmdd.split('-')[1].length===1){
-    yymmdd = yymmdd.slice(0,5)+'0'+yymmdd.slice(5,);
-  }
-
+  const ymd = date.toLocaleDateString().split('.');
+  ymd.pop();
+  const yymmdd = ymd.map(x=>x.slice(0,1)===' '?'0'+x.slice(1):x).join('-');
   let date2 = new Date(yymmdd);
-  const [sday,setSday]= useState(date2.getTime()/1000); // -32400 안빼주는걸로 변경
+  const [sday,setSday]= useState(date2.getTime()/1000-32400); 
   const [url,setUrl] = useState(`https://dgucoop.dongguk.edu/mobile/menu.html?code=5&sday=${sday}`);
   
   let differ = 0;
@@ -79,7 +77,7 @@ function App() {
         id='datepicker' 
         type='date'
         max={maxDate}
-        defaultValue={date.toISOString().split('T')[0]} 
+        defaultValue={yymmdd} 
         onChange={handleDateChange}
         style={{
           'display':'block',
