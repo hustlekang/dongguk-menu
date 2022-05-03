@@ -9,9 +9,9 @@ function App() {
   }
 
   let date2 = new Date(yymmdd);
-  const [sday,setSday]= useState(date2.getTime()/1000-32400);
+  const [sday,setSday]= useState(date2.getTime()/1000); // -32400 안빼주는걸로 변경
   const [url,setUrl] = useState(`https://dgucoop.dongguk.edu/mobile/menu.html?code=5&sday=${sday}`);
-
+  
   let differ = 0;
   let maxDate = '';
   switch (date.getDay()) {
