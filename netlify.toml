@@ -1,5 +1,0 @@
-[[redirects]]
-from = "/proxy/*"
-  to = "https://dgucoop.dongguk.edu/mobile/:splat"  
-  status = 200
-  force = true
