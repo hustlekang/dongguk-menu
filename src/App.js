@@ -1,22 +1,21 @@
-import { useState, Suspense } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
-import Menu from "./components/Menu";
-import parseMenu from "./utils/parseMenu";
-import { getMenu, fetchInitHtml } from "./api/fetchData";
 import DateSelector from "./components/DateSelector";
-
-const html = fetchInitHtml();
+import Menu from "./components/Menu";
 
 function App() {
-  const [menu, setMenu] = useState(parseMenu(html.read()));
-  const [dateString, setDateString] = useState(
-    new Date()
-      .toLocaleDateString()
-      .match(/[0-9]+/g)
-      .map((date) => (date.length === 1 ? 0 + date : date))
-      .join("-")
+  const dateString = new Date() //'yyyy-mm-dd'
+    .toLocaleDateString()
+    .match(/[0-9]+/g)
+    .map((date) => (date.length === 1 ? 0 + date : date))
+    .join("-");
+  const today = new Date(dateString); // 초기 날짜 Date 객체
+
+  const [sday, setSday] = useState(today.getTime() / 1000 - 32400); // UTC값
+  const [url, setUrl] = useState(
+    `https://dgucoop.dongguk.edu/mobile/menu.html?code=5&sday=${sday}`
   );
-  const today = new Date(dateString);
+
   const differ = 13 - today.getDay();
   const maxDateString = new Date(today.setDate(today.getDate() + differ))
     .toLocaleDateString()
@@ -24,19 +23,18 @@ function App() {
     .map((date) => (date.length === 1 ? 0 + date : date))
     .join("-");
 
-  const handleDateChange = async (event) => {
+  const handleDateChange = (event) => {
     const newDate = new Date(event.target.value);
-    const menu = await getMenu(newDate.getTime() / 1000 - 9 * 60 * 60);
-    setMenu(menu);
+    setSday(newDate.getTime() / 1000 - 9 * 60 * 60);
   };
+
+  useEffect(() => {
+    setUrl((pre) => pre.slice(0, 57) + sday);
+  }, [sday]);
 
   return (
     <div className="App">
-      <div className="container">
-        <Suspense fallback={<div>loading...</div>}>
-          <Menu menu={menu} />
-        </Suspense>
-      </div>
+      <Menu url={url} />
       <DateSelector
         maxDateString={maxDateString}
         dateString={dateString}

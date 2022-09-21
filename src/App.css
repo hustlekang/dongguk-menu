@@ -2,39 +2,43 @@
   text-align: center;
   max-width: 390px;
   margin: auto;
-  box-sizing: border-box;
   font-family: Helvetica, Arial, sans-serif;
 }
-.container {
+
+.menu-wrapper {
   height: 500px;
-  padding-top: 40px;
-  box-sizing: border-box;
 }
 
-h1 {
-  margin-top: 20px;
-  font-size: 24px;
-}
-ul {
+.dateSelector-wrapper {
   margin-top: 10px;
 }
-
-li {
-  margin-bottom: 5px;
+iframe {
+  position: absolute;
+  top: -45;
+  left: 50%;
+  width: 390px;
+  height: 500px;
+  transform: translate(-50%);
 }
+
 input {
   display: block;
   box-sizing: border-box;
-  width: 300px;
+  width: 390px;
   height: 40px;
   font-size: 20px;
   font-weight: 600;
   text-align: center;
   padding: 5px;
   color: #333333;
-  /* vertical-align: bottom; */
-  margin: 10px auto;
+  vertical-align: bottom;
+  margin: 10px 0;
 }
-label {
+
+.label-grey {
   color: #cccccc;
+}
+p {
+  margin-top: 5px;
+  font-size: 10px;
 }
