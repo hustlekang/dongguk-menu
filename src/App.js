@@ -34,6 +34,8 @@ function App() {
 
   return (
     <div className="App">
+      <a href="http://27.96.131.114/">새로운 버전으로 사용하세요(클릭)</a>
+
       <Menu url={url} />
       <DateSelector
         maxDateString={maxDateString}
